@@ -14,16 +14,16 @@ public class Card {
 	public static void main(String[] args){
 		System.out.println("Card Values: ");
 		for (Rank r: Rank.values() ){
-			System.out.println(r.rank + ": " + r.value);
+			System.out.println(r);
 		}
 		System.out.println("************");
 		System.out.println("Card Suits: ");
 		for (Suit s: Suit.values() ){
-			System.out.println(s.suit);
+			System.out.println(s);
 		}
 	}
 	
 	public void printCard(){
-		System.out.println(this.rank + " of " + this.suit);
+		System.out.println(rank + " of " + suit);
 	}
 }

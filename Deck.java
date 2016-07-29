@@ -4,17 +4,21 @@ import java.util.ArrayList;
 
 public class Deck {
 	private ArrayList<Card> deck;
-	
+
 	Deck(){
 		deck = new ArrayList();
-		deck.add(new Card(KING, SPADE));
+		
+		for(Rank r: Rank.values()){
+			for (Suit s: Suit.values()){
+				deck.add(new Card(r, s));
+			}
 		}
 	}
-	
+
 	public void printDeck(){
-		for(int i = 0; i < deck.length; i++){
-			deck[i].printCard();
+		for (Card c: deck){
+			c.printCard();
 		}
 	}
-	
+
 }
