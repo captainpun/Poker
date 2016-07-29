@@ -1,13 +1,22 @@
 package Poker;
 
 public enum Suit{
-	HEART("Hearts"),
-	CLUB("Clubs"),
-	SPADE("Spades"),
-	DIAMOND("Diamonds");
+	HEART(1, "Hearts"),
+	CLUB(2, "Clubs"),
+	SPADE(3, "Spades"),
+	DIAMOND(4, "Diamonds");
 	
-	private String suit;
-	private Suit(String suit){
+	private int suit;
+	private String name;
+	private Suit(int suit, String n){
 		this.suit = suit;
+		this.name = n;
+	}
+	
+	public int getSuitVal(){
+		return this.suit;
+	}
+	public String getSuitName(){
+		return this.name;
 	}
 }
