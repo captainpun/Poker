@@ -1,29 +1,31 @@
 package Poker;
 
-public class Card {
+public class Card implements Comparable<Card>{
 	
-	public static Rank rank;
-	public static Suit suit;
+	private final Rank RANK;
+	private final Suit SUIT;
 	
 	Card(Rank rank, Suit suit){
-		this.rank = rank;
-		this.suit = suit;
+		this.RANK = rank;
+		this.SUIT = suit;
 	}
 	
-	
-	public static void main(String[] args){
-		System.out.println("Card Values: ");
-		for (Rank r: Rank.values() ){
-			System.out.println(r);
-		}
-		System.out.println("************");
-		System.out.println("Card Suits: ");
-		for (Suit s: Suit.values() ){
-			System.out.println(s);
-		}
+	public void printCardName(){
+		System.out.println(RANK.getRankName() + " of " + SUIT.getSuitName());
+	}
+	public void printCardVal(){
+		System.out.println(RANK.getRankVal() + "; " + SUIT.getSuitVal() );
 	}
 	
-	public void printCard(){
-		System.out.println(rank + " of " + suit);
+	public int getCardRank(){
+		return RANK.getRankVal();
+	}
+	public int getCardSuit(){
+		return SUIT.getSuitVal();
+	}
+
+	@Override
+	public int compareTo(Card other) {
+		return Integer.compare(this.RANK.getRankVal(), other.RANK.getRankVal());
 	}
 }
