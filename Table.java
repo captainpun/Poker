@@ -13,16 +13,27 @@ import java.util.ArrayList;
 public class Table {
 
 	private Deck deck;
-	private Card[] communityCards;
-	private ArrayList<Player> players;
+	private Card[] communityCards; //list of cards that everyone looks at to determine their handRank
+	private ArrayList<Player> players; // number of players at the table (could be spectators)
+	private Seat[] seats; // total seats at the table available.
+	private ArrayList<Pot> potList; //list of all pots and which players are in the pots.
+	private int dealerPos;
 
 
 	public Table(){
 		deck = new Deck(true);
 		communityCards = new Card[5];
-		players = new ArrayList<Player>();
+		buildSeats();
 	}
 
+	
+	private void buildSeats(){
+		int seatNum = 1;
+		seats = new Seat[10]; // 10 seats at the table
+		for (int i = 0; i < seats.length; i++){
+			seats[i] = new Seat(seatNum++);
+		}
+	}
 
 	public void getCommunityCard(Card c) throws CommunityCardsFullException{
 		int pos = 0;
@@ -41,11 +52,11 @@ public class Table {
 		throw new CommunityCardsFullException(pos, c);
 	}
 	
-	public void dealHoleCard(Player p){
+	public void dealHoleCard(Seat s){
 		try{
-			p.getHoleCard(deck.dealCard() );
+			s.getHoleCard(deck.dealCard() );
 		}catch(HoleCardsFullException e){
-			System.out.println("Player already has " + e.getNumCards() + "cards in the hole");
+			System.out.println("Seat " + s.getSearNum() + " already has " + e.getNumCards() + "cards in the hole");
 			System.out.print("Cannot deal card: ");
 			e.printCardToAdd();
 			e.printStackTrace();
@@ -71,13 +82,14 @@ public class Table {
 	}
 	
 	public void addPlayer(Player p){
-		if(players.size() < 10){
+		if(players.size() < 50){ //arbitrary number of players allowed to be at the table.
 			players.add(p);
 		}else{
 			System.out.println("there are too many players at the table");
 		}
 	}
 	
+	//not sure this works, try it out!
 	public void removePlayer(Player rplayer){
 		for(int i = 0; i < players.size(); i++){
 			if (players.get(i).equals(rplayer) ){
