@@ -1,39 +1,33 @@
-package Poker;
+/*
+ * Created on 04-Mar-2003
+ *
+ */
+package net.sourceforge.javapoker.server;
+
+/**
+ * @author Martin Cavanagh
+ *
+ */
+
+import java.util.*;
+import net.sourceforge.javapoker.server.gamecomponents.*;
+
+/*
+ * Need some clarification on what a 'Player' is.  Is this one person in a
+ * given game, or one person connected to the server (and possibly involved
+ * in multiple games)?
+ */
 
 public class Player {
-
-	private int money;
-	private boolean isTurn;
-
-	private Card[] holeCards = new Card[2];
-
-	public void getHoleCard(Card c) throws HoleCardsFullException{
-		if (holeCards[0] == null){
-			holeCards[0] = c;
-		}else if (holeCards[1] == null){
-			holeCards[1] = c;
-		}else{
-			throw new HoleCardsFullException(holeCards.length, c);
-		}
-	}
-
-
-}
-class HoleCardsFullException extends Exception{
+	public final int ACTIVE = 1;
+	public final int INACTIVE = 2;
+	public final int WAITINGLIST = 3;
 	
-	private int numCards;
-	private Card cardToAdd;
-	public HoleCardsFullException(int numCards, Card c){
-		this.numCards = numCards;
-		this.cardToAdd = c;
-	}
-	
-	public int getNumCards(){
-		return numCards;
-	}
-	
-	public void printCardToAdd(){
-		cardToAdd.printCardName();
+	private Vector cards;
+	private int status;
+
+	public Vector getCards() {
+		return cards;
 	}
 
 }
