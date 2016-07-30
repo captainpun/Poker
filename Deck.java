@@ -6,8 +6,15 @@ public class Deck {
 	private ArrayList<Card> deck;
 
 	Deck(){
-		deck = new ArrayList();
+		deck = new ArrayList<Card>();
 		createDeck();
+	}
+	
+	Deck(boolean toShuffle){
+		this();
+		if(toShuffle){
+			shuffleDeck();
+		}
 	}
 
 	public void createDeck(){
@@ -35,9 +42,16 @@ public class Deck {
 				card.printCardVal();
 			}
 		}
-
+	}
+	
+	public int getSize(){
+		return deck.size();
 	}
 
+	public Card dealCard(){
+		return deck.remove(deck.size()-1);
+	}
+	
 	public void shuffleDeck(){
 		//iterate 3 times the size of the deck
 		for (int i = 0; i < deck.size() * 3; i++){
@@ -55,5 +69,12 @@ public class Deck {
 	public void sortDeck(){
 		deck.sort(null);
 	}
+	
+
+	
+	public void pNumDeckCards(){
+		System.out.println(deck.size() + " cards in the deck");
+	}
+	
 }
 
