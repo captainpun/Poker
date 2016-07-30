@@ -16,6 +16,9 @@ public class MainGame {
 		table.dealCommunityCard();
 		table.dealCommunityCard();
 		table.dealCommunityCard();
+		table.dealCommunityCard();
+		table.dealCommunityCard();
+		table.dealCommunityCard();
 		table.printCommunityCards();
 	}
 }

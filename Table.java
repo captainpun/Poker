@@ -69,11 +69,23 @@ public class Table {
 			if(c != null) c.printCardName();
 		}
 	}
+	
+	public void addPlayer(Player p){
+		if(players.size() < 10){
+			players.add(p);
+		}else{
+			System.out.println("there are too many players at the table");
+		}
+	}
+	
+	public void removePlayer(Player rplayer){
+		for(int i = 0; i < players.size(); i++){
+			if (players.get(i).equals(rplayer) ){
+				players.remove(i);
+			}
+		}
+	}
 }
-
-
-
-
 
 @SuppressWarnings("serial")
 class CommunityCardsFullException extends Exception{
