@@ -3,37 +3,46 @@ package Poker;
 public class Player {
 
 	private int money;
-	private boolean isTurn;
-
-	private Card[] holeCards = new Card[2];
-
-	public void getHoleCard(Card c) throws HoleCardsFullException{
-		if (holeCards[0] == null){
-			holeCards[0] = c;
-		}else if (holeCards[1] == null){
-			holeCards[1] = c;
-		}else{
-			throw new HoleCardsFullException(holeCards.length, c);
+	private String name;
+	
+	Player(String name, int startAmt){
+		this.name = name;
+		this.money = startAmt;
+	}
+	
+	public int getMoney(){
+		return money;
+	}
+	
+	public void addMoney(int amt){
+		money += amt;
+	}
+	
+	public void deductMoney(int amt) throws InsufficientMoneyException{
+		if (money > amt){
+			money -= amt;
+		} else{
+			throw new InsufficientMoneyException(amt, this);
 		}
 	}
-
-
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public String toString(){
+		return getName() + "; Stack: " + getMoney();
+	}
 }
-class HoleCardsFullException extends Exception{
-	
-	private int numCards;
-	private Card cardToAdd;
-	public HoleCardsFullException(int numCards, Card c){
-		this.numCards = numCards;
-		this.cardToAdd = c;
-	}
-	
-	public int getNumCards(){
-		return numCards;
-	}
-	
-	public void printCardToAdd(){
-		cardToAdd.printCardName();
-	}
 
+class InsufficientMoneyException extends Exception{
+	private int overdrawn;
+	
+	public InsufficientMoneyException(int amt, Player p){
+		int overdrawn = amt - p.getMoney();
+	}
+	
+	public int overdrawnAmt(){
+		return overdrawn;
+	}
 }
