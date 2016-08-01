@@ -10,19 +10,19 @@ public class Pot {
 	private ArrayList<Seat> SeatsInPot;
 	private int amount;
 	
-	Pot(int amount, Player[] players){
+	Pot(int amount, ArrayList<Seat> seats){
 		this.amount = amount;
 		
-		for (Player p: players){
-			playersInPot.add(p);
+		for (Seat s: seats){
+			SeatsInPot.add(s);
 		}
 	}
 	
 	// need to be able to remove a player from the pot if they fold
-	public void removePlayer(Player p){
-		for (Player r: playersInPot){
-			if (p == r){
-				playersInPot.remove(r);
+	public void removeSeat(Seat s){
+		for (Seat r: SeatsInPot){
+			if (s == r){
+				SeatsInPot.remove(r);
 				return;
 			}
 		}

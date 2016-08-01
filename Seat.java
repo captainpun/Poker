@@ -31,8 +31,12 @@ public class Seat {
 		return p == null;
 	}
 
-	public int getSearNum(){
+	public int getSeatNum(){
 		return this.SEATNUM;
+	}
+	
+	public Player getPlayer(){
+		return p;
 	}
 
 	public void addPlayer(Player p){
@@ -47,7 +51,7 @@ public class Seat {
 		this.p = null;
 	}
 
-	public void getHoleCard(Card c) throws HoleCardsFullException{
+	public void setHoleCard(Card c) throws HoleCardsFullException{
 		if (holeCards[0] == null){
 			holeCards[0] = c;
 		}else if (holeCards[1] == null){
@@ -55,6 +59,14 @@ public class Seat {
 		}else{
 			throw new HoleCardsFullException(holeCards.length, c);
 		}
+	}
+	
+	public String toString(){
+		return String.valueOf(getSeatNum() );
+	}
+	
+	public Card[] getHoleCards(){
+		return holeCards;
 	}
 
 

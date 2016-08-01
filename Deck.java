@@ -52,6 +52,10 @@ public class Deck {
 		return deck.remove(deck.size()-1);
 	}
 	
+	public void burnCard(){
+		deck.remove(deck.size()-1);
+	}
+	
 	public void shuffleDeck(){
 		//iterate 3 times the size of the deck
 		for (int i = 0; i < deck.size() * 3; i++){
