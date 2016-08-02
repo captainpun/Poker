@@ -23,7 +23,11 @@ public class Card implements Comparable<Card>{
 	public int getCardSuit(){
 		return SUIT.getSuitVal();
 	}
-
+	
+	public String toString(){
+		return RANK.getRankName() + " of " + SUIT.getSuitName();
+	}
+	
 	@Override
 	public int compareTo(Card other) {
 		return Integer.compare(this.RANK.getRankVal(), other.RANK.getRankVal());
