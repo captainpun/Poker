@@ -10,7 +10,7 @@ jar {
   manifest {
     attributes(
 // 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'Poker.MainGame'
+      'Main-Class': 'Poker.Server'
     )
   }
 }

@@ -1,48 +1,33 @@
-package Poker;
+/*
+ * Created on 04-Mar-2003
+ *
+ */
+package net.sourceforge.javapoker.server;
+
+/**
+ * @author Martin Cavanagh
+ *
+ */
+
+import java.util.*;
+import net.sourceforge.javapoker.server.gamecomponents.*;
+
+/*
+ * Need some clarification on what a 'Player' is.  Is this one person in a
+ * given game, or one person connected to the server (and possibly involved
+ * in multiple games)?
+ */
 
 public class Player {
+	public final int ACTIVE = 1;
+	public final int INACTIVE = 2;
+	public final int WAITINGLIST = 3;
+	
+	private Vector cards;
+	private int status;
 
-	private int money;
-	private String name;
-	
-	Player(String name, int startAmt){
-		this.name = name;
-		this.money = startAmt;
+	public Vector getCards() {
+		return cards;
 	}
-	
-	public int getMoney(){
-		return money;
-	}
-	
-	public void addMoney(int amt){
-		money += amt;
-	}
-	
-	public void deductMoney(int amt) throws InsufficientMoneyException{
-		if (money > amt){
-			money -= amt;
-		} else{
-			throw new InsufficientMoneyException(amt, this);
-		}
-	}
-	
-	public String getName(){
-		return this.name;
-	}
-	
-	public String toString(){
-		return getName() + "; Stack: " + getMoney();
-	}
-}
 
-class InsufficientMoneyException extends Exception{
-	private int overdrawn;
-	
-	public InsufficientMoneyException(int amt, Player p){
-		int overdrawn = amt - p.getMoney();
-	}
-	
-	public int overdrawnAmt(){
-		return overdrawn;
-	}
 }
