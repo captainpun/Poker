@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories {
+	mavenCentral()
+}
+
+jar {
+  manifest {
+    attributes(
+// 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'Poker.Server'
+    )
+  }
+}
+
+
+/*
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+
+    testCompile 'junit:junit:4.12'
+}
+*/
